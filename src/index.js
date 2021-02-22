@@ -15,8 +15,21 @@ console.log('Hello world 3');
 console.log(json);
 
 
+const x = 42;
+
 const p = document.createElement('p')
 p.textContent = 'edhviuewjvwev'
 p.classList.add(styles.logo)
 
 document.body.insertAdjacentElement('afterbegin', p)
+
+class User {
+    static id = 42
+}
+
+async function xx() {
+
+    return await Promise.resolve('23')
+}
+
+xx().then(console.log)

@@ -1,6 +1,7 @@
 
 
+
 .logo {
-    color: brown;
+    color: var(--color-black);
     width: 200px;
 }

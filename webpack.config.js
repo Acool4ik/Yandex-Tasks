@@ -1,3 +1,4 @@
+/* eslint-disable */
 const path = require('path')
 
 
@@ -29,6 +30,27 @@ const optimization = () => {
     // {splitChunks: {chunks: 'all'}} // dont needed
     return {}
 }
+const loadersJS = () => isDevelopment ? 
+([
+    {
+        loader: "babel-loader",
+        options: 
+        {
+            presets: ['@babel/preset-env'],
+            plugins: ['@babel/plugin-proposal-class-properties']
+        }
+    },
+    "eslint-loader"
+]) 
+    : 
+({
+    loader: "babel-loader",
+    options: 
+    {
+        presets: ['@babel/preset-env'],
+        plugins: ['@babel/plugin-proposal-class-properties']
+    }
+})
 
 
 module.exports = {
@@ -38,7 +60,7 @@ module.exports = {
 
     entry: 
     {
-        main: './index.js'
+        main: ['@babel/polyfill', './index.js']
     },
 
     output: 
@@ -68,6 +90,8 @@ module.exports = {
         hot: isDevelopment
     },
 
+    devtool: isDevelopment ? 'source-map' : false,
+
     plugins: 
     [
         new HTMLWebpackPlugin(options_HTMLWebpackPlugin),
@@ -83,14 +107,7 @@ module.exports = {
             {
                 test: /\.m?js$/,
                 exclude: /node_modules/,
-                use: 
-                {
-                    loader: "babel-loader",
-                    options: 
-                    {
-                        presets: ['@babel/preset-env']
-                    }
-                }
+                use: loadersJS()
             },
             {
                 test: /\.css$/,
