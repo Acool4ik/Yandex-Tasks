@@ -6,7 +6,7 @@
   "private": "true",
   "browserslist": {
     "production": [
-      ">0.2%",
+      ">0.25%",
       "not dead",
       "not op_mini all"
     ],
@@ -34,6 +34,7 @@
     "@types/webpack": "^4.41.26",
     "@types/webpack-dev-server": "^3.11.1",
     "autoprefixer": "^10.2.4",
+    "babel-loader": "^8.2.2",
     "clean-webpack-plugin": "^3.0.0",
     "copy-webpack-plugin": "^7.0.0",
     "cross-env": "^7.0.3",
@@ -52,6 +53,8 @@
     "webpack-dev-server": "^3.11.2"
   },
   "dependencies": {
+    "@babel/core": "^7.12.17",
+    "@babel/preset-env": "^7.12.17",
     "postcss": "^8.2.6"
   }
 }
