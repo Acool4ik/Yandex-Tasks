@@ -1,6 +1,6 @@
 {
   "name": "bundler",
-  "version": "1.0.0",
+  "version": "99.999.999.99",
   "description": "solution yandex-tasks",
   "main": "index.js",
   "private": "true",
@@ -17,10 +17,10 @@
     ]
   },
   "scripts": {
-    "start": " cross-env NODE_ENV=development    webpack serve --open",
-    "dev": " cross-env NODE_ENV=development    webpack --mode development",
-    "build": " cross-env NODE_ENV=production     webpack --mode production",
-    "watch": " cross-env NODE_ENV=development    webpack --mode development --watch"
+    "start": "cross-env NODE_ENV=development    webpack serve --open",
+    "dev":   "cross-env NODE_ENV=development    webpack --mode development",
+    "build": "cross-env NODE_ENV=production     webpack --mode production",
+    "watch": "cross-env NODE_ENV=development    webpack --mode development --watch"
   },
   "keywords": [
     "Возьмите",

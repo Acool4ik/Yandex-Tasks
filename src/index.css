@@ -1,23 +1,144 @@
+/* all needed fonts */
+@font-face {
+    font-family: 'Roboto Bold';
+    src: url('./assets/fonts/Roboto-Bold.ttf');
+    font-weight: bold;
+}
+@font-face {
+    font-family: 'Roboto Medium';
+    src: url('./assets/fonts/Roboto-Medium.ttf');
+    font-weight: 500;
+}
+@font-face {
+    font-family: 'Roboto Regular';
+    src: url('./assets/fonts/Roboto-Regular.ttf');
+    font-weight: normal;
+}
 
+/* global variables */
 :root {
-    --color-black: #000;
+    /* colors */
+    --black-color: rgba(38, 28, 0, 1);
+    --orange-color: rgba(244, 176, 0, 1);
+    --grey-color: rgba(145, 143, 138, 1);
+    --grey-light-color: rgba(191, 191, 191, 1);
+    --white-color: rgba(252, 251, 247, 1);
+
+    /* background colors with difference theme */
+    --theme-dark-bc: radial-gradient(70.24% 70.24% at 49.87% 29.76%, rgba(18, 12, 1, 0.9) 0%, #000000 100%);
+    --theme-light-bc: #ffffff;
+}
+
+/* drop default styles */
+* {
+    padding: 0;
+    margin: 0;
+    outline: none;
+    border: none;
+    box-sizing: border-box;
 }
 
 body {
     height: 100vh;
-    background-color: black;
-
     overflow: hidden;
+}
 
-    text-align: center;
-    display: flex;
+/* dependence background-color of app from theme */
+body.theme_dark {
+    background: radial-gradient(
+        70.24% 70.24% at 49.87% 29.76%,
+      rgba(19, 14, 0, 0.9) 0%, 
+      #000000 100%
+    );
+}
 
-    margin: 0;
-    
-    box-sizing: border-box;
-    box-shadow: 0 0 10px #000;
+body.theme_light {
+    background-color: #ffffff;
 }
 
 ::-webkit-scrollbar {
     width: 0;
 }
+
+
+/* root font styles */
+.fontHeadline {
+    font-family: 'Roboto Bold', serif;
+    font-size: 30px;
+    line-height: 32px;
+    font-style: normal;
+}
+
+.fontSubhead {
+    font-family: 'Roboto Bold', serif;
+    font-size: 20px;
+    line-height: 22px;
+    font-style: normal;
+}
+
+.fontBody {
+    font-family: 'Roboto Medium', serif;
+    font-size: 16px;
+    line-height: 18px;
+    font-style: normal;
+}
+
+.fontCaption {
+    font-family: 'Roboto Regular', serif;
+    font-size: 14px;
+    line-height: 16px;
+    font-style: normal;
+}
+
+
+/* color fonts with light theme */
+.theme_light .fontHeadline, .fontSubhead, .fontBody, .fontCaption {
+    color: var(--black-color);
+}
+
+.theme_light .fontHeadline.grayText, .fontSubhead.grayText, .fontBody.grayText, .fontCaption.grayText  {
+    color: var(--grey-light-color)
+}
+
+/* color fonts with dark theme */
+.theme_dark .fontHeadline, .fontSubhead, .fontBody, .fontCaption {
+    color: var(--white-color);
+}
+
+.theme_dark .fontHeadline.grayText, .fontSubhead.grayText, .fontBody.grayText, .fontCaption.grayText  {
+    color: var(--grey-color)
+}
+
+
+/* main container for app */
+.container {
+    margin: 0 auto;
+    width: 100%;
+}
+  
+@media only screen and (min-width: 400px) {
+  .container {
+    max-width: calc(100% - 48px) !important;
+  }
+}
+  
+@media only screen and (min-width: 600px) {
+  .container {
+    max-width: calc(100% - 104px) !important;
+  }
+}
+
+@media only screen and (min-width: 1000px) {
+  .container {
+    max-width: 85% !important;
+  }
+}
+
+
+
+
+
+
+
+
+

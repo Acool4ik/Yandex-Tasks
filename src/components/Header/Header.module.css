@@ -1,0 +1,15 @@
+.header > h5 {
+    padding-top: 20px;
+}
+
+.header > p {
+    padding-top: 8px;
+}
+
+.headerHorisontal {
+    text-align: center;
+}
+
+.headerVerticle {
+    text-align: left;
+}

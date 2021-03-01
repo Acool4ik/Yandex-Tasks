@@ -2,6 +2,7 @@
 const path = require('path')
 
 
+// All Plugins
 const HTMLWebpackPlugin              = require('html-webpack-plugin')
 const {CleanWebpackPlugin}           = require('clean-webpack-plugin')
 const CopyWebpackPlugin              = require('copy-webpack-plugin')
@@ -12,16 +13,30 @@ const autoprefixer                   = require('autoprefixer')
 const postCssModulesValues           = require('postcss-modules-values')
 
 
+// Options for some Plugins
 const options_HTMLWebpackPlugin = {template: './index.html'}
-const options_CopyWebpackPlugin = {patterns: [{
-    from: path.resolve(__dirname, 'src/favicon.ico'),
-    to: path.resolve(__dirname, 'build')
-}]}
+// const options_CopyWebpackPlugin = {patterns: [{
+//     from: path.resolve(__dirname, 'src/favicon.ico'),
+//     to: path.resolve(__dirname, 'build')
+// }]}
+const options_CopyWebpackPlugin = {patterns: [
+    {
+        from: path.resolve(__dirname, 'src/favicon.ico'),
+        to: path.resolve(__dirname, 'build')
+    },
+    {
+        from: path.resolve(__dirname, 'src/assets/images'),
+        to: path.resolve(__dirname, 'build/static/images')
+    }
+]}
 const options_MiniCssExtractPlugin = {filename: 'stories.css'}
 const options_postCssLoader =  {plugins: ["postcss-preset-env", autoprefixer(), postCssModulesValues]}
 
 
+// System varieble
 const isDevelopment = process.env.NODE_ENV === 'development'
+
+// Settings for 'optimization' field in config
 const optimization = () => {
     if(!isDevelopment) return {minimize: true, minimizer: [
         new OptimizeCssAssetsWebpackPlugin(),
@@ -30,6 +45,9 @@ const optimization = () => {
     // {splitChunks: {chunks: 'all'}} // dont needed
     return {}
 }
+
+
+// Мarious loaders for .js extention with difference assembly mode
 const loadersJS = () => isDevelopment ? 
 ([
     {
@@ -53,6 +71,8 @@ const loadersJS = () => isDevelopment ?
 })
 
 
+
+// Config itself
 module.exports = {
     mode: isDevelopment ? 'development' : 'production',
 
@@ -66,7 +86,7 @@ module.exports = {
     output: 
     {
         filename: 'stories.js',
-        path: path.resolve(__dirname, 'build')
+        path: path.resolve(__dirname, 'build'),
     },
 
     resolve: 
@@ -87,7 +107,8 @@ module.exports = {
         contentBase: path.resolve(__dirname, 'build'),
         compress: true,
         port: 8080,
-        hot: isDevelopment
+        hot: isDevelopment,
+        historyApiFallback: true
     },
 
     devtool: isDevelopment ? 'source-map' : false,
@@ -113,7 +134,9 @@ module.exports = {
                 test: /\.css$/,
                 use: 
                 [
-                    MiniCssExtractPlugin.loader, 
+                    {
+                        loader: MiniCssExtractPlugin.loader,
+                    }, 
                     'css-loader',
                     {
                         loader: "postcss-loader",
@@ -135,7 +158,7 @@ module.exports = {
                         {
                             importLoaders: 1,
                             modules: true,
-                            localIdentName: "[name]__[local]___[hash:base64:5]"
+                            localIdentName: "[name]___[local][hash:base64:5]"
                         }
                     }, 
                     {
@@ -149,11 +172,25 @@ module.exports = {
             },
             {
                 test: /\.(png|svg|jpg|gif)$/,
-                use: ['file-loader']
+                use: {
+                    loader: 'file-loader',
+                    options: {
+                        name: "[name].[ext]",
+                        outputPath: "static/images",
+                        publicPath: 'static/images',
+                    }
+                }
             },
             {
                 test: /\.(ttf|woff|woff2)$/,
-                use: ['file-loader']
+                use: {
+                    loader: 'file-loader',
+                    options: {
+                        name: "[name].[ext]",
+                        outputPath: "static/fonts",
+                        publicPath: 'static/fonts',
+                    }
+                }
             }
         ]
     }

@@ -1,35 +1,58 @@
+// Cors imports
 import './index.css'
-import json from './assets/json/data.json'
-import swg from '@assets/images/extra-light.svg'
-import jpeg from '@assets/images/1x/1.jpg'
-import styles from './component.module.css'
+import {autoRender} from './handlers/autoRender'
+import {triggerRender} from './handlers/triggerRender'
 
 
-console.log(styles);
+// Castom components
+import {Header} from './components/Header/Header'
+import {Leaders} from './components/Leaders/Leaders'
+import {noop} from './components/noop'
 
 
-console.log(swg);
-console.log(jpeg);
+// main finction, return string template with HTML
+export const renderTemplate = (aleas, data) => {
+    const isThemeDark = !document.body.classList.contains('theme_light')
+    const isVertical = !(window.innerWidth > window.innerHeight)
 
-console.log('Hello world 3');
-console.log(json);
+    const supplementedState = {
+        ...data,
+        isVertical, 
+        isThemeDark
+    }
 
+    // console.log('Current alias:_', aleas);
+    // console.log('All aliases:_', aliases);
+    console.log('All state:_', supplementedState);
 
-const x = 42;
+    
 
-const p = document.createElement('p')
-p.textContent = 'edhviuewjvwev'
-p.classList.add(styles.logo)
+    return `
+    <section class="container">
+        ${Header(supplementedState)}
 
-document.body.insertAdjacentElement('afterbegin', p)
-
-class User {
-    static id = 42
+        ${aleas === 'leaders' && Leaders(supplementedState)}
+        ${aleas === 'vote' && noop()}
+        ${aleas === 'chart' && noop()}
+        ${aleas === 'diagram' && noop()}
+        ${aleas === 'activity' && noop()}
+    </section>
+    `
 }
 
-async function xx() {
 
-    return await Promise.resolve('23')
-}
+// render template with first load
+window.addEventListener('DOMContentLoaded', () => triggerRender())
 
-xx().then(console.log)
+// render template when change size of window or rotate device
+window.onresize = () => triggerRender()
+
+// with change URL or change state will be happen re-render template
+autoRender()
+
+
+
+
+
+
+
