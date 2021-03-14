@@ -1,8 +1,42 @@
-
-
 .leadersItem {
     display: flex;
-    align-items: flex-start;
+    align-items: center;
     flex-direction: column;
-    justify-content: flex-start;
+    position: relative;
+    width: 120px;
+    flex-shrink: 0;
 }
+
+.leadersInnerComponent {
+    position: relative;
+    padding-top: 18px;
+    text-align: center;
+    padding-bottom: 9px;
+}
+
+
+@media only screen and (max-width: 330px) {
+    .leadersItem {
+        width: 100px;
+    }
+}
+
+@media only screen and (min-width: 400px) {
+    .leadersItem {
+        width: 120px;
+    }
+}
+
+
+@media only screen and (min-width: 1000px) {
+    .leadersInnerComponent {
+        padding-top: calc(18px + 0.5rem);
+    }
+
+    .leadersItem {
+        width: calc(120px + 3rem + 0.5vw) !important;
+    }
+}
+
+
+

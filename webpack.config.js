@@ -96,6 +96,7 @@ module.exports = {
         {
             '@stateManager': path.resolve(__dirname, 'src/stateManager'),
             '@routeManager': path.resolve(__dirname, 'src/routeManager'),
+            '@handlers': path.resolve(__dirname, 'src/handlers'),
             '@assets': path.resolve(__dirname, 'src/assets'),
             '@': path.resolve(__dirname, 'src')
         }
@@ -103,7 +104,8 @@ module.exports = {
 
     optimization: optimization(),
 
-    devServer: {
+    devServer: 
+    {
         contentBase: path.resolve(__dirname, 'build'),
         compress: true,
         port: 8080,
@@ -172,9 +174,11 @@ module.exports = {
             },
             {
                 test: /\.(png|svg|jpg|gif)$/,
-                use: {
+                use: 
+                {
                     loader: 'file-loader',
-                    options: {
+                    options: 
+                    {
                         name: "[name].[ext]",
                         outputPath: "static/images",
                         publicPath: 'static/images',
@@ -183,9 +187,11 @@ module.exports = {
             },
             {
                 test: /\.(ttf|woff|woff2)$/,
-                use: {
+                use: 
+                {
                     loader: 'file-loader',
-                    options: {
+                    options: 
+                    {
                         name: "[name].[ext]",
                         outputPath: "static/fonts",
                         publicPath: 'static/fonts',

@@ -2,10 +2,9 @@
 export const getPathToImage = (props) => {
     const {folder, name, ext} = props
     if(!name) throw new Error('Отсутствует имя фотографии')
-    if(!ext) throw new Error('Отсутствует расширение фотографии')
     const rootDir = 'static/images/'
     
-    const src = `${rootDir}${folder || ''}${name}${ext}` 
+    const src = `${rootDir}${folder || ''}${name}${ext || ''}` 
     return src    
 }
 

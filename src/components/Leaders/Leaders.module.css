@@ -1,0 +1,20 @@
+.leadersContainer {
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+}
+
+@media only screen and (min-width: 600px) {
+    .leadersContainer {
+        padding-left: 7px !important;
+        padding-right: 7px !important;
+    }
+}
+
+@media only screen and (min-width: 1000px) {
+    .leadersContainer {
+        padding-left: calc(1vw + 3rem) !important;
+        padding-right: calc(1vw + 3rem) !important;
+    }
+}
+

@@ -1,0 +1,25 @@
+.sectionContainer {
+    overflow-y: scroll;
+}
+
+
+.chartResultContainer {
+    display: flex;
+    align-items: flex-end;
+    flex-wrap: nowrap;
+    overflow-x: scroll;
+    overflow-y: hidden;
+    padding-bottom: 24px;
+}
+
+.chartPeopleContainer {
+    padding-bottom: 8px;
+}
+
+
+@media only screen and (max-width: 350px) {
+    .chartResultContainer {
+        padding-bottom: 1rem;
+    }
+}
+

@@ -1,13 +1,21 @@
+// denotes the root element
+document.body.id = 'root'
+
 // Cors imports
 import './index.css'
 import {autoRender} from './handlers/autoRender'
 import {triggerRender} from './handlers/triggerRender'
 
-
 // Castom components
 import {Header} from './components/Header/Header'
 import {Leaders} from './components/Leaders/Leaders'
+import {Chart} from './components/Chart/Chart'
+import {Diagram} from './components/Diagram/Diagram'
+import {Vote} from './components/Vote/Vote'
+import {Activity} from './components/Activity/Activity'
 import {noop} from './components/noop'
+
+
 
 
 // main finction, return string template with HTML
@@ -20,22 +28,17 @@ export const renderTemplate = (aleas, data) => {
         isVertical, 
         isThemeDark
     }
-
-    // console.log('Current alias:_', aleas);
-    // console.log('All aliases:_', aliases);
-    console.log('All state:_', supplementedState);
-
     
 
     return `
     <section class="container">
         ${Header(supplementedState)}
 
-        ${aleas === 'leaders' && Leaders(supplementedState)}
-        ${aleas === 'vote' && noop()}
-        ${aleas === 'chart' && noop()}
-        ${aleas === 'diagram' && noop()}
-        ${aleas === 'activity' && noop()}
+        ${aleas === 'leaders' ? Leaders(supplementedState) : noop()}
+        ${aleas === 'vote' ? Vote(supplementedState) : noop()}
+        ${aleas === 'chart' ? Chart(supplementedState) : noop()}
+        ${aleas === 'diagram' ? Diagram(supplementedState) : noop()}
+        ${aleas === 'activity' ? Activity(supplementedState) : noop()}
     </section>
     `
 }
@@ -49,6 +52,9 @@ window.onresize = () => triggerRender()
 
 // with change URL or change state will be happen re-render template
 autoRender()
+
+// add in global scope
+window.renderTemplate = renderTemplate
 
 
 

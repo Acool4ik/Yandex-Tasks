@@ -1,0 +1,75 @@
+.voteContainerHorisontal {
+    padding: 5px 0;
+    height: 100%;
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    grid-template-rows: repeat(4, 1fr);
+    justify-items: center;
+    align-items: center;
+
+    grid-template-areas: 
+        ".         topLeftItem     btnFirst   topRightItem     .        "
+        "leftItem  topLeftItem     btnFirst   topRightItem     rightItem"
+        "leftItem  bottomLeftItem  btnSecond  bottomRightItem  rightItem"
+        ".         bottomLeftItem  btnSecond  bottomRightItem  .        ";
+}
+
+.voteContainerVerticle {
+    display: grid;
+    height: 100%;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(12, 1fr);
+    justify-items: center;
+    align-items: center;
+
+    grid-template-areas:
+        ".               btnFirst          ."
+        "leftTopItem     btnFirst          rightTopItem"
+        "leftTopItem     btnFirst          rightTopItem"
+    
+        "leftTopItem     middleTopItem     rightTopItem"
+        "leftMiddleItem  middleTopItem     rightMiddleItem"
+        "leftMiddleItem  middleTopItem     rightMiddleItem"
+    
+        "leftMiddleItem  middleBottomItem  rightMiddleItem"
+        "leftMiddleItem  middleBottomItem  rightMiddleItem"
+        "leftBottomItem  middleBottomItem  rightBottomItem"
+    
+        "leftBottomItem  btnSecond         rightBottomItem"
+        "leftBottomItem  btnSecond         rightBottomItem"
+        ".               btnSecond         .";
+}
+
+
+@media only screen and (max-width: 350px) {
+    .voteContainerVerticle > a > div > div {
+        padding: 3px 0 !important;
+    }
+}
+
+@media only screen and (max-width: 580px) {
+    .voteContainerHorisontal {
+        padding: 0 !important;
+    } 
+    
+    .voteContainerHorisontal > a > div > div {
+        padding: 3px 0 !important;
+    }
+} 
+
+
+
+@media only screen and (min-width: 900px) {
+    .voteContainerHorisontal {
+        height: 70%;
+        position: relative;
+        top: 50%;
+        transform: translateY(-90%);
+    }
+}
+
+
+
+
+
+
